@@ -1,0 +1,58 @@
+Bianca Ciuche 2018
+315 CA
+
+                HOMEWORK 3 - ElfUnknown's - Glacierfight
+
+    This is the README attached to the solution of the third homework.
+
+        The homework's hierarchy is:
+    - struct.c: contains every struct's declaration;
+    - functions.h/ functions.c: contains the functions of the program;
+    - main.c: here the files are opened, modified and closed.
+
+        Difficulties encountered:
+- in main.c: 
+    - I used two variables input_file and output_file, I copied
+        the parameter given in the command line, and then I concatenated the
+        extensions ".in"/ ".out" to get the expected name of the files;
+- in struct.c:
+    - to memorise each cell's characteristics, I used another string "cells" 
+        and I stored in it the line, column, altitude and gloves's size;
+    - in the glacier's struct I declared a variable center that takes the value
+        of the initial radius so that the center will remain the same after the
+        meltdown.
+- in functions.c/.h:
+    - is_in_circle: I used the distance formula to make sure that the distance
+        from the elf's position to the center is smaller than the radius; I
+        added center.x, center.y to make the function valid for snowstorm too;
+    - find_pos: because I used an array for a matrix, I found out that I often
+        needed to find where in the array a position was;
+    - attack: is given an elf and the function:
+        - verifies if there is another elf on the same position;
+        - establishes who is going to be the first to throw a snowball;
+        - keeps them playing until one of them become soaking wet;
+        - because the loop makes both of them throw snowballs, it is important
+            to check after the first one's move if the second one still haves
+            hp left to stop the fight in time.
+    - move: if the elf is no longer on the glacier (hp = 0) or it doesn't have
+        any energy left the function will stop; else with every letter (UDLR) 
+        that is being read, the function:
+            - checks if the elf remains on the glacier after the movement;
+            - modifies the energy level and executes the move if possible;
+            - gives the elf a chance to get bigger gloves;
+            - if he finds another elf on the way they will fight.
+    - print_scoreboard: in the beginning it puts the dry elfs on the first
+        positions and then it sorts them by the number of elfs eliminated by
+        them and finally it sorts them by their name;
+    - snowstorm: to get the variables I use a mask = 255 like this:
+                10101010 10101010 10101010 10101010 &
+                00000000 00000000 00000000 11111111
+                -----------------------------------
+         v[3] = 00000000 00000000 00000000 10101010
+        and then I put the next set of bits on the last 8 position, until I get
+        all the variables.
+    - winner: the winner is the only player left on the glacier, so with every
+        call, the function verifies if there is only one player left.
+    - commands: it reads the commands and call the needed function.
+
+    
